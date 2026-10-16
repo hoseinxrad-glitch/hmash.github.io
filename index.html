@@ -16,57 +16,62 @@
   input:focus-visible, button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
   button { font: 600 14px 'Vazirmatn', sans-serif; border: 0; border-radius: 10px; padding: 9px 14px; background: var(--surface2); color: var(--text); cursor: pointer; }
   .primary { background: var(--acc); color: #06241a; font-weight: 800; }
-  #auth { height: 100%; display: flex; align-items: center; justify-content: center; padding: 16px;
-    background: radial-gradient(900px 520px at 50% -10%, #17382f 0%, transparent 60%), var(--bg); }
+  .danger { background: rgba(255,107,107,.18); color: #ff9a9a; }
+  #auth { height: 100%; display: flex; align-items: center; justify-content: center; padding: 16px; background: radial-gradient(900px 520px at 50% -10%, #17382f 0%, transparent 60%), var(--bg); }
   .card { width: 100%; max-width: 380px; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 28px 24px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
   h1 { font-size: 26px; font-weight: 800; margin: 0 0 4px; }
   .sub { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
-  .tabs { display: flex; gap: 6px; margin: 14px 0; }
-  .tabs button { flex: 1; } .tabs button.on { background: var(--acc); color: #06241a; }
+  .tabs { display: flex; gap: 6px; margin: 14px 0; } .tabs button { flex: 1; } .tabs button.on { background: var(--acc); color: #06241a; }
   .card label { display: block; font-size: 14px; font-weight: 600; margin: 12px 0 6px; }
   .card .primary { width: 100%; margin-top: 18px; padding: 14px; font-size: 17px; border-radius: 14px; }
   .err { color: var(--err); font-size: 13px; min-height: 18px; margin: 10px 0 0; }
+  .note { font-size: 12px; color: var(--muted); margin: 12px 0 0; line-height: 1.8; }
 
   #app { height: 100%; display: flex; }
   #side { width: 340px; border-inline-end: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; min-height: 0; }
-  .top { display: flex; align-items: center; gap: 8px; padding: 14px; }
-  .top b { flex: 1; font-size: 16px; }
-  #search { margin: 0 14px 10px; width: auto; }
-  #results { margin: 0 14px; }
-  .res { padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 14px; background: var(--surface2); margin-bottom: 6px; }
+  .top { display: flex; align-items: center; gap: 6px; padding: 12px; flex-wrap: wrap; } .top b { flex: 1; font-size: 16px; min-width: 60px; }
+  #search { margin: 0 12px 10px; width: auto; }
+  #results { margin: 0 12px; } .res { padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 14px; background: var(--surface2); margin-bottom: 6px; }
   #chatList { flex: 1; overflow-y: auto; padding: 0 8px 8px; }
-  .chat { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; cursor: pointer; }
-  .chat:hover, .chat.on { background: var(--surface2); }
-  .ava { width: 44px; height: 44px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 800 18px 'Vazirmatn'; background: linear-gradient(135deg, #3ddc97, #1fa6c9); color: #04241c; }
+  .chat { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; cursor: pointer; } .chat:hover, .chat.on { background: var(--surface2); }
+  .ava { position: relative; width: 46px; height: 46px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 800 18px 'Vazirmatn'; background: linear-gradient(135deg, #3ddc97, #1fa6c9); color: #04241c; }
+  .ava i { position: absolute; bottom: 0; inset-inline-end: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--acc); border: 2px solid var(--surface); }
   .ci { flex: 1; min-width: 0; } .ci b { display: block; font-size: 15px; }
   .ci span { display: block; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .badge { background: var(--acc); color: #06241a; border-radius: 999px; font-size: 12px; font-weight: 800; padding: 1px 8px; }
   .empty { color: var(--muted); text-align: center; padding: 30px 12px; font-size: 14px; }
 
   #pane { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
-  #ph { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  #ph { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--surface); }
   #ph .t { flex: 1; min-width: 0; } #ph b { display: block; } #ph small { color: var(--muted); font-size: 12px; }
   #back { display: none; }
   a.act { text-decoration: none; background: var(--surface2); color: var(--text); border-radius: 10px; padding: 9px 12px; font: 600 13px 'Vazirmatn', sans-serif; }
-  #msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
-  .m { max-width: min(70%, 520px); padding: 8px 12px; border-radius: 16px; background: var(--surface2); align-self: flex-start; word-break: break-word; }
-  .m.me { align-self: flex-end; background: #14473a; }
+  #msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+  .m { position: relative; max-width: min(72%, 520px); padding: 8px 12px; border-radius: 16px; background: var(--surface2); align-self: flex-start; word-break: break-word; cursor: pointer; }
+  .m.me { align-self: flex-end; background: #14473a; } .m.pending { opacity: .6; }
   .m .n { display: block; font-size: 12px; font-weight: 600; color: var(--acc); }
-  .m .tm { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
-  #composer { display: flex; gap: 8px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--surface); }
+  .m .rp { font-size: 12px; color: var(--muted); border-inline-start: 3px solid var(--acc); padding: 2px 8px; margin-bottom: 4px; background: rgba(0,0,0,.18); border-radius: 6px; }
+  .m .rp b { color: var(--acc); font-weight: 600; }
+  .m .tm { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; } .tick { color: var(--acc); }
+  .m .tb { display: none; gap: 6px; margin-top: 6px; flex-wrap: wrap; } .m.sel .tb { display: flex; } .tb button { padding: 4px 10px; font-size: 12px; }
+  #replybar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 16px; background: var(--surface2); border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  #composer { display: flex; gap: 8px; padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--surface); }
   #composer input { flex: 1; } #composer .primary { padding: 0 20px; }
   #ro { padding: 14px; text-align: center; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); background: var(--surface); }
   #placeholder { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--muted); }
-  dialog { border: 1px solid var(--line); border-radius: 20px; background: var(--surface); color: var(--text); padding: 22px; width: min(92vw, 360px); }
-  dialog::backdrop { background: rgba(0,0,0,.6); }
-  dialog label { display: block; font-size: 14px; margin: 12px 0 6px; } dialog .row { display: flex; gap: 8px; margin-top: 18px; } dialog .row button { flex: 1; }
-  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--surface2); border: 1px solid var(--line); padding: 10px 18px; border-radius: 12px; font-size: 14px; z-index: 20; }
-  .ln { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  dialog { border: 1px solid var(--line); border-radius: 20px; background: var(--surface); color: var(--text); padding: 20px; width: min(94vw, 420px); max-height: 86vh; }
+  dialog.wide { width: min(96vw, 640px); } dialog::backdrop { background: rgba(0,0,0,.6); }
+  dialog label { display: block; font-size: 14px; margin: 12px 0 6px; } dialog .row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; } dialog .row button { flex: 1; }
+  .ln { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .ln .bt { display: flex; gap: 4px; flex-wrap: wrap; } .ln .bt button { padding: 4px 10px; font-size: 12px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); margin-inline-end: 8px; } .dot.on { background: var(--acc); }
+  .tok { background: #0d1218; border: 1px dashed var(--acc); border-radius: 12px; padding: 10px; font: 13px monospace; direction: ltr; word-break: break-all; margin-top: 10px; }
+  pre { direction: ltr; background: #0d1218; border-radius: 10px; padding: 10px; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
   #ps { cursor: pointer; }
+  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--surface2); border: 1px solid var(--line); padding: 10px 18px; border-radius: 12px; font-size: 14px; z-index: 50; }
   @media (max-width: 720px) {
-    #side { width: 100%; } #pane { display: none; }
-    #app.pane #side { display: none; } #app.pane #pane { display: flex; } #back { display: inline-block; }
+    #side { width: 100%; } #pane { display: none; } #app.pane #side { display: none; } #app.pane #pane { display: flex; } #back { display: inline-block; }
+    .m { max-width: 86%; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -81,13 +86,14 @@
     <label for="pw">رمز عبور</label><input id="pw" type="password" autocomplete="current-password">
     <p class="err" id="authErr" role="alert"></p>
     <button class="primary" id="authBtn">ورود</button>
+    <p class="note">یک حساب برای پیام‌رسان، بیسیم و تماس تصویری. ادمین فقط گفتگوهای عمومی و پیام‌های گزارش‌شده را می‌بیند؛ گفتگوهای خصوصی از طریق پنل ادمین قابل مشاهده نیست. پیام‌ها رمزنگاری سرتاسری نیستند.</p>
   </div>
 </section>
 
 <section id="app" hidden>
   <aside id="side">
-    <div class="top"><b id="meName"></b><button id="newBtn" class="primary">+ جدید</button><button id="logout">خروج</button></div>
-    <input id="search" placeholder="جستجوی کاربر یا کانال و گروه عمومی">
+    <div class="top"><b id="meName"></b><button id="botBtn" title="ربات‌ها">🤖</button><button id="admBtn" hidden>ادمین</button><button id="newBtn" class="primary">+ جدید</button><button id="logout">خروج</button></div>
+    <input id="search" placeholder="جستجوی کاربر یا گروه و کانال عمومی">
     <div id="results"></div>
     <div id="chatList"></div>
   </aside>
@@ -96,35 +102,51 @@
     <div id="ph" hidden>
       <button id="back">←</button>
       <div class="t"><b id="pt"></b><small id="ps"></small></div>
-      <button id="addBtn" hidden>افزودن عضو</button>
+      <button id="moreBtn" title="گزینه‌ها">⋯</button>
       <a class="act" id="aw" target="_blank" rel="noopener">بیسیم</a>
       <a class="act" id="am" target="_blank" rel="noopener">تماس تصویری</a>
     </div>
     <div id="msgs" hidden></div>
+    <div id="replybar" hidden><span id="rbText"></span><button id="rbX">✕</button></div>
     <div id="composer" hidden><input id="txt" maxlength="2000" placeholder="پیام بنویسید…"><button id="sendBtn" class="primary">ارسال</button></div>
     <div id="ro" hidden>فقط مدیر کانال می‌تواند پیام بگذارد</div>
   </main>
 </section>
 
-<dialog id="memDlg"><b>اعضا</b><div id="memList"></div><div class="row"><button id="memX">بستن</button></div></dialog>
-
 <dialog id="dlg">
   <b>ساخت گروه یا کانال</b>
-  <label for="dKind">نوع</label>
-  <select id="dKind"><option value="group">گروه</option><option value="channel">کانال</option></select>
+  <label for="dKind">نوع</label><select id="dKind"><option value="group">گروه</option><option value="channel">کانال</option></select>
   <label for="dName">نام</label><input id="dName" maxlength="40">
   <label><input type="checkbox" id="dPub" style="width:auto"> عمومی (دیگران با جستجو پیدا و عضو شوند)</label>
   <div class="row"><button id="dOk" class="primary">ساخت</button><button id="dCancel">انصراف</button></div>
 </dialog>
+<dialog id="memDlg"><b>اعضا</b><div id="memList"></div><div class="row"><button id="memX">بستن</button></div></dialog>
+<dialog id="moreDlg"><b id="moreT"></b><div class="row" id="moreRow"></div><div class="row"><button id="moreX">بستن</button></div></dialog>
+<dialog id="admDlg" class="wide">
+  <div class="row" style="margin:0 0 12px"><button data-t="stats">آمار</button><button data-t="users">کاربران</button><button data-t="chats">گروه‌ها و کانال‌ها</button><button data-t="reports">گزارش‌ها</button><button id="admX">بستن</button></div>
+  <div id="admBody"></div>
+</dialog>
+<dialog id="botDlg" class="wide">
+  <b>ربات‌ها</b>
+  <p class="note">نام ربات باید به <code>bot</code> ختم شود (مثل <code>newsbot</code>). بعد از ساخت، توکن فقط یک بار نشان داده می‌شود.</p>
+  <div class="row" style="margin-top:8px"><input id="botName" placeholder="نام ربات، مثل newsbot" maxlength="20" style="flex:1"><button id="botOk" class="primary" style="flex:none">ساخت ربات</button></div>
+  <div id="botTok"></div><div id="botList"></div>
+  <p class="note">ربات را با «افزودن عضو» به گروه یا کانال اضافه کنید (در کانال باید مدیر باشد) یا در جستجو پیدا کنید و پیام خصوصی بدهید. API ساده:</p>
+  <pre id="botDoc"></pre>
+  <div class="row"><button id="botX">بستن</button></div>
+</dialog>
 
 <script>
-// بعد از ساخت سرویس روی Render، آدرس آن را اینجا بگذارید (با wss://)
+// آدرس سرور پیام‌رسان (با wss://)
 const PROD_WS_URL = 'wss://hmash-github-io.onrender.com';
 const WS_URL = ['localhost', '127.0.0.1'].includes(location.hostname) ? 'ws://localhost:3000' : PROD_WS_URL;
+const API = PROD_WS_URL.replace('wss://', 'https://');
 const SITE = 'https://hoseinxrad-glitch.github.io/wakitaki.github.io/'; // سایت بیسیم و تماس تصویری
 
 const $ = (id) => document.getElementById(id);
-let ws, me = '', chats = [], cur = null, unread = {}, retry = null, mode = 'login', last = 0;
+let ws, me = '', isAdmin = false, chats = [], cur = null, retry = null, mode = 'login';
+let replyTo = null, editing = null, lastTyping = 0, lastSend = 0, loadingOld = false;
+const typingOf = {};
 const ls = {
   get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} },
@@ -133,7 +155,10 @@ const ls = {
 const send = (o) => ws && ws.readyState === 1 && ws.send(JSON.stringify(o));
 const title = (c) => (c.kind === 'dm' ? c.other : c.name) || '؟';
 const fmt = (t) => new Date(t).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
-function toast(text) { const d = document.createElement('div'); d.id = 'toast'; d.textContent = text; document.body.append(d); setTimeout(() => d.remove(), 2800); }
+const canMod = () => cur && cur.kind !== 'dm' && ['owner', 'admin'].includes(cur.role);
+function el(tag, text, cls) { const e = document.createElement(tag); if (text) e.textContent = text; if (cls) e.className = cls; return e; }
+function btn(text, fn, cls) { const b = el('button', text, cls); b.onclick = fn; return b; }
+function toast(text) { const d = el('div', text); d.id = 'toast'; document.body.append(d); setTimeout(() => d.remove(), 2800); }
 
 function connect() {
   clearTimeout(retry);
@@ -142,41 +167,67 @@ function connect() {
   ws.onclose = () => { retry = setTimeout(connect, 2000); };
   ws.onmessage = (e) => on(JSON.parse(e.data));
 }
-function showAuth() { $('app').hidden = true; $('auth').hidden = false; }
+function showAuth(msg) { $('app').hidden = true; $('auth').hidden = false; $('authErr').textContent = msg || ''; }
 
 function on(m) {
+  if (m.type.startsWith('a:')) return admRender(m);
   if (m.type === 'auth') {
-    me = m.username; ls.set('ms-token', m.token); ls.set('ms-user', me);
-    $('auth').hidden = true; $('app').hidden = false; $('meName').textContent = me; $('pw').value = '';
+    me = m.username; isAdmin = !!m.isAdmin; ls.set('ms-token', m.token); ls.set('ms-user', me);
+    $('auth').hidden = true; $('app').hidden = false; $('meName').textContent = me; $('admBtn').hidden = !isAdmin; $('pw').value = '';
   } else if (m.type === 'auth-failed') { ls.del('ms-token'); showAuth(); }
-  else if (m.type === 'error') { if (!$('auth').hidden) $('authErr').textContent = m.text; else toast(m.text); }
-  else if (m.type === 'info') toast(m.text);
-  else if (m.type === 'chats') { chats = m.chats; if (cur) cur = chats.find((c) => c.id === cur.id) || cur; renderList(); }
-  else if (m.type === 'history') { if (cur && cur.id === m.chatId) { $('msgs').textContent = ''; m.msgs.forEach(addMsg); } }
-  else if (m.type === 'msg') {
-    const c = chats.find((x) => x.id === m.chatId);
-    if (c) { c.last = m.text; chats = [c, ...chats.filter((x) => x !== c)]; }
-    if (cur && cur.id === m.chatId) addMsg(m);
-    else if (m.user !== me) unread[m.chatId] = (unread[m.chatId] || 0) + 1;
+  else if (m.type === 'banned') { ls.del('ms-token'); ls.del('ms-user'); showAuth('حساب شما مسدود شده است'); }
+  else if (m.type === 'error') {
+    if (!$('auth').hidden) $('authErr').textContent = m.text; else toast(m.text);
+    document.querySelectorAll('#msgs .pending').forEach((x) => x.remove());
+  } else if (m.type === 'info') toast(m.text);
+  else if (m.type === 'chats') {
+    const old = cur; chats = m.chats;
+    if (old) { const n = chats.find((c) => c.id === old.id); if (n) { n.members = old.members; n.firstId = old.firstId; n.more = old.more; cur = n; sub(); } }
     renderList();
-  } else if (m.type === 'found') renderResults(m);
+  } else if (m.type === 'history') history(m);
+  else if (m.type === 'msg') gotMsg(m);
+  else if (m.type === 'edited') {
+    const d = $('msgs').querySelector('[data-id="' + m.id + '"]');
+    if (d) { d.querySelector('.tx').textContent = m.text; const t = d.querySelector('.tm'); if (!t.dataset.ed) { t.dataset.ed = 1; t.prepend(document.createTextNode('ویرایش‌شده • ')); } }
+  } else if (m.type === 'deleted') { const d = $('msgs').querySelector('[data-id="' + m.id + '"]'); if (d) d.remove(); }
+  else if (m.type === 'typing') { typingOf[m.chatId] = { user: m.user, until: Date.now() + 3000 }; sub(); setTimeout(sub, 3100); }
+  else if (m.type === 'read') { if (cur && cur.id === m.chatId && cur.kind === 'dm') { cur.otherRead = Math.max(cur.otherRead || 0, m.upTo); ticks(); } }
+  else if (m.type === 'presence') {
+    chats.forEach((c) => { if (c.kind === 'dm' && c.other === m.user) { c.otherOnline = m.online; c.otherSeen = m.seen; } });
+    renderList(); sub();
+  } else if (m.type === 'left') { chats = chats.filter((c) => c.id !== m.chatId); if (cur && cur.id === m.chatId) closePane(); renderList(); }
+  else if (m.type === 'found') renderResults(m);
   else if (m.type === 'opened') openChat(m.chatId);
   else if (m.type === 'members') {
-    if (cur && cur.id === m.chatId) { cur.members = m.members; $('ps').textContent = (cur.kind === 'channel' ? 'کانال' : 'گروه') + ' • ' + m.members.length + ' عضو • لیست اعضا'; }
+    if (cur && cur.id === m.chatId) { cur.members = m.members; sub(); if ($('memDlg').open) showMembers(); }
+  } else if (m.type === 'botcreated') {
+    $('botTok').textContent = ''; const d = el('div', '', 'tok'); d.textContent = m.token;
+    $('botTok').append(el('p', 'ربات ' + m.name + ' ساخته شد. توکن را همین حالا کپی کنید:', 'note'), d, btn('کپی توکن', () => { navigator.clipboard && navigator.clipboard.writeText(m.token); toast('کپی شد'); }));
+    send({ type: 'mybots' });
+  } else if (m.type === 'mybots') {
+    const box = $('botList'); box.textContent = '';
+    m.bots.forEach((b) => { const d = el('div', '', 'ln'); d.append(el('span', '🤖 ' + b.username), btn('حذف', () => confirm('این ربات و پیام‌هایش حذف شود؟') && send({ type: 'delbot', id: b.id }), 'danger')); box.append(d); });
   }
+}
+
+function sub() {
+  if (!cur) return;
+  const t = typingOf[cur.id];
+  if (t && Date.now() < t.until) { $('ps').textContent = t.user + ' در حال نوشتن…'; return; }
+  if (cur.kind === 'dm') $('ps').textContent = cur.otherOnline ? 'آنلاین' : cur.otherSeen ? 'آخرین بازدید ' + fmt(cur.otherSeen) : '';
+  else $('ps').textContent = (cur.kind === 'channel' ? 'کانال' : 'گروه') + (cur.members ? ' • ' + cur.members.length + ' عضو • لیست اعضا' : '');
 }
 
 function renderList() {
   const box = $('chatList'); box.textContent = '';
-  if (!chats.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'هنوز گفتگویی ندارید. کاربر را جستجو کنید یا گروه بسازید.'; box.append(e); return; }
+  if (!chats.length) { box.append(el('div', 'هنوز گفتگویی ندارید. کاربر را جستجو کنید یا گروه بسازید.', 'empty')); return; }
   chats.forEach((c) => {
-    const d = document.createElement('div'); d.className = 'chat' + (cur && cur.id === c.id ? ' on' : '');
-    const a = document.createElement('div'); a.className = 'ava'; a.textContent = title(c).charAt(0);
-    const i = document.createElement('div'); i.className = 'ci';
-    const b = document.createElement('b'); b.textContent = (c.kind === 'channel' ? '📢 ' : c.kind === 'group' ? '👥 ' : '') + title(c);
-    const s = document.createElement('span'); s.textContent = c.last || 'بدون پیام';
-    i.append(b, s); d.append(a, i);
-    if (unread[c.id]) { const g = document.createElement('span'); g.className = 'badge'; g.textContent = unread[c.id]; d.append(g); }
+    const d = el('div', '', 'chat' + (cur && cur.id === c.id ? ' on' : ''));
+    const a = el('div', title(c).charAt(0), 'ava'); if (c.kind === 'dm' && c.otherOnline) a.append(el('i'));
+    const i = el('div', '', 'ci');
+    i.append(el('b', (c.kind === 'channel' ? '📢 ' : c.kind === 'group' ? '👥 ' : '') + title(c)), el('span', c.last || 'بدون پیام'));
+    d.append(a, i);
+    if (c.unread) d.append(el('span', c.unread > 99 ? '99+' : String(c.unread), 'badge'));
     d.onclick = () => openChat(c.id);
     box.append(d);
   });
@@ -185,72 +236,179 @@ function renderList() {
 function roomName(c) { return (c.kind === 'dm' ? 'dm-' + [me, c.other].sort().join('-') : c.name + '-' + c.id).slice(0, 40); }
 function openChat(id) {
   const c = chats.find((x) => x.id === id); if (!c) return;
-  cur = c; unread[id] = 0; renderList();
+  cur = c; c.unread = 0; cancelCompose(); loadingOld = false;
   $('app').classList.add('pane');
   $('placeholder').hidden = true; $('ph').hidden = false; $('msgs').hidden = false;
   const canSend = c.kind !== 'channel' || ['owner', 'admin'].includes(c.role);
   $('composer').hidden = !canSend; $('ro').hidden = canSend;
-  $('pt').textContent = title(c); $('ps').textContent = c.kind === 'dm' ? 'گفتگوی خصوصی' : '';
-  $('addBtn').hidden = !(c.kind !== 'dm' && ['owner', 'admin'].includes(c.role));
+  $('pt').textContent = title(c); sub();
   const qs = '?room=' + encodeURIComponent(roomName(c)) + '&name=' + encodeURIComponent(me);
   $('aw').href = SITE + qs; $('am').href = SITE + 'meet.html' + qs;
   $('msgs').textContent = '';
   send({ type: 'open', chatId: id });
   if (c.kind !== 'dm') send({ type: 'members', chatId: id });
-  if (canSend) $('txt').focus();
+  renderList();
+  if (canSend && matchMedia('(min-width: 721px)').matches) $('txt').focus();
+}
+function closePane() {
+  $('app').classList.remove('pane'); cur = null; cancelCompose();
+  ['ph', 'msgs', 'composer', 'ro'].forEach((i) => ($(i).hidden = true)); $('placeholder').hidden = false; renderList();
 }
 
-function addMsg(m) {
-  const d = document.createElement('div'); d.className = 'm' + (m.user === me ? ' me' : '');
-  if (m.user !== me && cur && cur.kind !== 'dm') { const n = document.createElement('span'); n.className = 'n'; n.textContent = m.user; d.append(n); }
-  d.append(document.createTextNode(m.text));
-  const t = document.createElement('span'); t.className = 'tm'; t.textContent = fmt(m.t); d.append(t);
-  const box = $('msgs'); box.append(d); box.scrollTop = box.scrollHeight;
+function msgEl(m) {
+  const mine = m.user === me;
+  const d = el('div', '', 'm' + (mine ? ' me' : '') + (m.tmp && !m.id ? ' pending' : ''));
+  d.dataset.id = m.id || ''; if (m.tmp) d.dataset.tmp = m.tmp;
+  if (!mine && cur && cur.kind !== 'dm') d.append(el('span', m.user + (m.adm ? ' ✔ ادمین' : ''), 'n'));
+  if (m.reply) { const r = el('div', '', 'rp'); r.append(el('b', m.reply.user), document.createTextNode(' ' + m.reply.text)); d.append(r); }
+  d.append(el('span', m.text, 'tx'));
+  const t = el('span', '', 'tm');
+  if (m.edited) { t.dataset.ed = 1; t.append(document.createTextNode('ویرایش‌شده • ')); }
+  t.append(document.createTextNode(fmt(m.t)));
+  if (mine && cur && cur.kind === 'dm') t.append(el('span', m.id && m.id <= (cur.otherRead || 0) ? ' ✓✓' : ' ✓', 'tick'));
+  d.append(t);
+  const tb = el('div', '', 'tb'), text = () => d.querySelector('.tx').textContent, id = () => +d.dataset.id;
+  const act = (fn) => () => { if (id()) fn(); };
+  tb.append(btn('پاسخ', act(() => startReply(id(), m.user, text()))));
+  if (mine) tb.append(btn('ویرایش', act(() => startEdit(id(), text()))));
+  if (mine || canMod()) tb.append(btn('حذف', act(() => confirm('این پیام حذف شود؟') && send({ type: 'delmsg', chatId: cur.id, id: id() }))));
+  if (!mine) tb.append(btn('گزارش', act(() => confirm('با گزارش، متن این پیام برای ادمین قابل مشاهده می‌شود. ادامه می‌دهید؟') && send({ type: 'report', msgId: id() }))));
+  d.append(tb);
+  d.onclick = (e) => { if (!e.target.closest('.tb')) d.classList.toggle('sel'); };
+  return d;
+}
+function ticks() {
+  document.querySelectorAll('#msgs .m.me').forEach((d) => { const t = d.querySelector('.tick'); if (t && +d.dataset.id && +d.dataset.id <= (cur.otherRead || 0)) t.textContent = ' ✓✓'; });
+}
+function history(m) {
+  if (!cur || cur.id !== m.chatId) return;
+  const box = $('msgs'); cur.more = m.more;
+  if (m.before) {
+    const h = box.scrollHeight, f = document.createDocumentFragment();
+    m.msgs.forEach((x) => f.append(msgEl(x))); box.prepend(f); box.scrollTop = box.scrollHeight - h; loadingOld = false;
+  } else {
+    box.textContent = ''; m.msgs.forEach((x) => box.append(msgEl(x))); box.scrollTop = box.scrollHeight;
+    if (m.msgs.length) send({ type: 'read', chatId: cur.id, upTo: m.msgs[m.msgs.length - 1].id });
+  }
+  if (m.msgs.length) cur.firstId = m.msgs[0].id;
+}
+function gotMsg(m) {
+  const c = chats.find((x) => x.id === m.chatId);
+  if (c) { c.last = m.text; chats = [c, ...chats.filter((x) => x !== c)]; }
+  if (cur && cur.id === m.chatId) {
+    const box = $('msgs'), pend = m.tmp && box.querySelector('[data-tmp="' + m.tmp + '"]');
+    if (pend) { pend.dataset.id = m.id; pend.classList.remove('pending'); }
+    else { box.append(msgEl(m)); box.scrollTop = box.scrollHeight; }
+    if (m.user !== me) send({ type: 'read', chatId: m.chatId, upTo: m.id });
+    delete typingOf[m.chatId]; sub();
+  } else if (c && m.user !== me) c.unread = (c.unread || 0) + 1;
+  renderList();
+}
+
+function startReply(id, user, text) { editing = null; replyTo = { id, user, text: text.slice(0, 80) }; $('rbText').textContent = 'پاسخ به ' + user + ': ' + text.slice(0, 60); $('replybar').hidden = false; $('txt').focus(); }
+function startEdit(id, text) { replyTo = null; editing = id; $('txt').value = text; $('rbText').textContent = 'ویرایش پیام'; $('replybar').hidden = false; $('txt').focus(); }
+function cancelCompose() { if (editing) $('txt').value = ''; replyTo = null; editing = null; $('replybar').hidden = true; }
+function sendMsg() {
+  const t = $('txt').value.trim();
+  if (!t || !cur) return;
+  const now = Date.now(); if (now - lastSend < 250) return; lastSend = now;
+  if (editing) send({ type: 'edit', chatId: cur.id, id: editing, text: t });
+  else {
+    const tmp = 't' + now, box = $('msgs');
+    box.append(msgEl({ id: 0, user: me, text: t, t: now, reply: replyTo, tmp })); box.scrollTop = box.scrollHeight;
+    send({ type: 'send', chatId: cur.id, text: t, replyTo: replyTo && replyTo.id, tmp });
+  }
+  $('txt').value = ''; editing = null; cancelCompose();
 }
 
 function renderResults(m) {
   const box = $('results'); box.textContent = '';
-  m.users.forEach((u) => { const d = document.createElement('div'); d.className = 'res'; d.textContent = '👤 ' + u.username + ' (پیام خصوصی)'; d.onclick = () => { send({ type: 'dm', username: u.username }); clearSearch(); }; box.append(d); });
-  m.chats.forEach((c) => { const d = document.createElement('div'); d.className = 'res'; d.textContent = (c.kind === 'channel' ? '📢 ' : '👥 ') + c.name + ' (عضویت)'; d.onclick = () => { send({ type: 'join', chatId: c.id }); clearSearch(); }; box.append(d); });
+  m.users.forEach((u) => { const d = el('div', '👤 ' + u.username + ' (پیام خصوصی)', 'res'); d.onclick = () => { send({ type: 'dm', username: u.username }); clearSearch(); }; box.append(d); });
+  m.chats.forEach((c) => { const d = el('div', (c.kind === 'channel' ? '📢 ' : '👥 ') + c.name + ' (عضویت)', 'res'); d.onclick = () => { send({ type: 'join', chatId: c.id }); clearSearch(); }; box.append(d); });
 }
 function clearSearch() { $('search').value = ''; $('results').textContent = ''; }
 
-function sendMsg() {
-  const t = $('txt').value.trim();
-  if (!t || !cur) return;
-  const now = Date.now(); if (now - last < 300) return; last = now;
-  send({ type: 'send', chatId: cur.id, text: t }); $('txt').value = '';
+function showMembers() {
+  if (!cur || !cur.members) return;
+  const box = $('memList'); box.textContent = '';
+  cur.members.forEach((u) => {
+    const d = el('div', '', 'ln'), s = el('span'), dot = el('i', '', 'dot' + (u.online ? ' on' : ''));
+    s.append(dot, u.username + (u.bot ? ' 🤖' : '') + (u.adm ? ' ✔' : ''));
+    const bt = el('div', '', 'bt'); bt.append(el('small', u.role === 'owner' ? 'مالک' : u.role === 'admin' ? 'مدیر' : 'عضو'));
+    if (canMod() && u.username !== me && u.role !== 'owner') {
+      if (cur.role === 'owner') bt.append(btn(u.role === 'admin' ? 'برکناری' : 'مدیر کن', () => send({ type: 'promote', chatId: cur.id, username: u.username, admin: u.role !== 'admin' })));
+      if (!(cur.role === 'admin' && u.role === 'admin')) bt.append(btn('حذف', () => send({ type: 'rmmember', chatId: cur.id, username: u.username }), 'danger'));
+    }
+    d.append(s, bt); box.append(d);
+  });
+  if (!$('memDlg').open) $('memDlg').showModal();
+}
+function showMore() {
+  if (!cur) return;
+  $('moreT').textContent = title(cur); const row = $('moreRow'); row.textContent = '';
+  if (cur.kind !== 'dm') row.append(btn('لیست اعضا', () => { $('moreDlg').close(); showMembers(); }));
+  if (canMod()) row.append(btn('افزودن عضو یا ربات', () => { const u = prompt('نام کاربری:'); if (u) send({ type: 'add', chatId: cur.id, username: u.trim() }); $('moreDlg').close(); }));
+  if (cur.kind !== 'dm' && cur.role !== 'owner') row.append(btn('خروج از گفتگو', () => { if (confirm('از این گفتگو خارج شوید؟')) send({ type: 'leave', chatId: cur.id }); $('moreDlg').close(); }, 'danger'));
+  if (cur.kind === 'dm' || cur.role === 'owner') row.append(btn('حذف گفتگو', () => { if (confirm('این گفتگو برای همه حذف شود؟')) send({ type: 'delchat', chatId: cur.id }); $('moreDlg').close(); }, 'danger'));
+  $('moreDlg').showModal();
 }
 
-// رویدادها
-function setMode(m) { mode = m; $('tLogin').classList.toggle('on', m === 'login'); $('tReg').classList.toggle('on', m === 'register'); $('authBtn').textContent = m === 'login' ? 'ورود' : 'ساخت حساب'; $('authErr').textContent = ''; }
+/* ----- پنل ادمین ----- */
+function admLoad(t) { send({ type: 'a:' + t }); }
+function admLine(label, ...btns) { const d = el('div', '', 'ln'), b = el('div', '', 'bt'); b.append(...btns); d.append(el('span', label), b); return d; }
+function admRender(m) {
+  const box = $('admBody'); box.textContent = '';
+  if (m.type === 'a:stats') {
+    const s = m.stats;
+    box.append(admLine('کاربران: ' + s.users + ' • آنلاین: ' + s.online), admLine('گروه و کانال: ' + s.groups + ' • پیام‌ها: ' + s.msgs), admLine('ربات‌ها: ' + s.bots + ' • گزارش‌های باز: ' + s.reports));
+    const i = el('input'); i.placeholder = 'اعلان برای همه‌ی کاربران آنلاین'; i.maxLength = 300;
+    box.append(i, btn('ارسال اعلان', () => { if (i.value.trim()) { send({ type: 'a:announce', text: i.value.trim() }); i.value = ''; } }, 'primary'));
+  } else if (m.type === 'a:users') {
+    m.users.forEach((u) => box.append(admLine((u.online ? '🟢 ' : '') + u.username + (u.isAdmin ? ' (ادمین)' : '') + (u.banned ? ' (مسدود)' : ''),
+      btn(u.banned ? 'رفع مسدودی' : 'مسدود', () => { send({ type: 'a:ban', userId: u.id, banned: !u.banned }); setTimeout(() => admLoad('users'), 400); }, u.banned ? '' : 'danger'),
+      btn(u.isAdmin ? 'حذف ادمین' : 'ادمین کن', () => { send({ type: 'a:admin', userId: u.id, admin: !u.isAdmin }); setTimeout(() => admLoad('users'), 400); }))));
+  } else if (m.type === 'a:chats') {
+    m.chats.forEach((c) => box.append(admLine((c.kind === 'channel' ? '📢 ' : '👥 ') + c.name + ' • ' + c.n + ' عضو • ' + (c.is_public ? 'عمومی' : 'خصوصی') + ' • مالک: ' + (c.owner || '—'),
+      ...(c.is_public ? [btn('مشاهده', () => send({ type: 'a:view', chatId: c.id }))] : []),
+      btn('حذف', () => { if (confirm('این گفتگو برای همه حذف شود؟')) { send({ type: 'a:delchat', chatId: c.id }); setTimeout(() => admLoad('chats'), 400); } }, 'danger'))));
+  } else if (m.type === 'a:view') {
+    box.append(btn('← بازگشت', () => admLoad('chats')));
+    m.msgs.forEach((x) => box.append(admLine(x.user + ': ' + x.text, btn('حذف', () => { send({ type: 'a:delmsg', id: x.id }); setTimeout(() => send({ type: 'a:view', chatId: m.chatId }), 400); }, 'danger'))));
+  } else if (m.type === 'a:reports') {
+    if (!m.reports.length) box.append(el('div', 'گزارشی نیست', 'empty'));
+    m.reports.forEach((r) => box.append(admLine(r.author + ': ' + r.text + ' (گزارش از ' + r.reporter + ')',
+      btn('رد گزارش', () => { send({ type: 'a:dismiss', id: r.id }); setTimeout(() => admLoad('reports'), 400); }))));
+  }
+}
+
+/* ----- رویدادها ----- */
+function setMode(x) { mode = x; $('tLogin').classList.toggle('on', x === 'login'); $('tReg').classList.toggle('on', x === 'register'); $('authBtn').textContent = x === 'login' ? 'ورود' : 'ساخت حساب'; $('authErr').textContent = ''; }
 $('tLogin').onclick = () => setMode('login'); $('tReg').onclick = () => setMode('register');
 const doAuth = () => send({ type: mode, username: $('un').value, password: $('pw').value });
 $('authBtn').onclick = doAuth;
 $('pw').addEventListener('keydown', (e) => { if (e.key === 'Enter') doAuth(); });
-$('logout').onclick = () => { send({ type: 'logout' }); ls.del('ms-token'); ls.del('ms-user'); me = ''; chats = []; cur = null; $('pane').classList.remove('pane'); $('app').classList.remove('pane'); showAuth(); };
+$('logout').onclick = () => { send({ type: 'logout' }); ls.del('ms-token'); ls.del('ms-user'); me = ''; chats = []; closePane(); showAuth(); };
 $('newBtn').onclick = () => $('dlg').showModal();
 $('dCancel').onclick = () => $('dlg').close();
 $('dOk').onclick = () => { send({ type: 'create', kind: $('dKind').value, name: $('dName').value, isPublic: $('dPub').checked }); $('dName').value = ''; $('dlg').close(); };
-$('addBtn').onclick = () => { const u = prompt('نام کاربری عضو جدید:'); if (u && cur) send({ type: 'add', chatId: cur.id, username: u.trim() }); };
-$('back').onclick = () => { $('app').classList.remove('pane'); cur = null; $('ph').hidden = true; $('msgs').hidden = true; $('composer').hidden = true; $('ro').hidden = true; $('placeholder').hidden = false; renderList(); };
-$('sendBtn').onclick = sendMsg;
-$('txt').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
-let st; $('search').addEventListener('input', (e) => { clearTimeout(st); const v = e.target.value; if (v.trim().length < 2) { $('results').textContent = ''; return; } st = setTimeout(() => send({ type: 'find', q: v }), 300); });
-
-$('ps').onclick = () => {
-  if (!cur || !cur.members) return;
-  const box = $('memList'); box.textContent = '';
-  cur.members.forEach((u) => {
-    const d = document.createElement('div'); d.className = 'ln';
-    const s = document.createElement('span'), dot = document.createElement('i');
-    dot.className = 'dot' + (u.online ? ' on' : ''); s.append(dot, u.username);
-    const r = document.createElement('small'); r.textContent = u.role === 'owner' ? 'مالک' : u.role === 'admin' ? 'مدیر' : 'عضو';
-    d.append(s, r); box.append(d);
-  });
-  $('memDlg').showModal();
-};
+$('back').onclick = closePane;
+$('ps').onclick = () => { if (cur && cur.kind !== 'dm') showMembers(); };
 $('memX').onclick = () => $('memDlg').close();
+$('moreBtn').onclick = showMore; $('moreX').onclick = () => $('moreDlg').close();
+$('rbX').onclick = cancelCompose;
+$('sendBtn').onclick = sendMsg;
+$('txt').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); if (e.key === 'Escape') cancelCompose(); });
+$('txt').addEventListener('input', () => { const n = Date.now(); if (cur && n - lastTyping > 2500) { lastTyping = n; send({ type: 'typing', chatId: cur.id }); } });
+$('msgs').addEventListener('scroll', () => {
+  if (cur && cur.more && !loadingOld && $('msgs').scrollTop < 80) { loadingOld = true; send({ type: 'open', chatId: cur.id, before: cur.firstId }); }
+});
+let st; $('search').addEventListener('input', (e) => { clearTimeout(st); const v = e.target.value; if (v.trim().length < 2) { $('results').textContent = ''; return; } st = setTimeout(() => send({ type: 'find', q: v }), 300); });
+$('admBtn').onclick = () => { $('admDlg').showModal(); admLoad('stats'); };
+document.querySelectorAll('#admDlg [data-t]').forEach((b) => (b.onclick = () => admLoad(b.dataset.t)));
+$('admX').onclick = () => $('admDlg').close();
+$('botBtn').onclick = () => { $('botTok').textContent = ''; $('botDoc').textContent = 'GET  ' + API + '/bot<TOKEN>/getUpdates\nPOST ' + API + '/bot<TOKEN>/sendMessage\n     {"chat_id": 1, "text": "سلام"}\nGET  ' + API + '/bot<TOKEN>/getMe'; $('botDlg').showModal(); send({ type: 'mybots' }); };
+$('botOk').onclick = () => { send({ type: 'newbot', name: $('botName').value }); $('botName').value = ''; };
+$('botX').onclick = () => $('botDlg').close();
 
 connect();
 </script>
