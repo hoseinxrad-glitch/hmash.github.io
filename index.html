@@ -61,6 +61,9 @@
   dialog::backdrop { background: rgba(0,0,0,.6); }
   dialog label { display: block; font-size: 14px; margin: 12px 0 6px; } dialog .row { display: flex; gap: 8px; margin-top: 18px; } dialog .row button { flex: 1; }
   #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--surface2); border: 1px solid var(--line); padding: 10px 18px; border-radius: 12px; font-size: 14px; z-index: 20; }
+  .ln { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); margin-inline-end: 8px; } .dot.on { background: var(--acc); }
+  #ps { cursor: pointer; }
   @media (max-width: 720px) {
     #side { width: 100%; } #pane { display: none; }
     #app.pane #side { display: none; } #app.pane #pane { display: flex; } #back { display: inline-block; }
@@ -103,6 +106,8 @@
   </main>
 </section>
 
+<dialog id="memDlg"><b>اعضا</b><div id="memList"></div><div class="row"><button id="memX">بستن</button></div></dialog>
+
 <dialog id="dlg">
   <b>ساخت گروه یا کانال</b>
   <label for="dKind">نوع</label>
@@ -141,7 +146,7 @@ function showAuth() { $('app').hidden = true; $('auth').hidden = false; }
 
 function on(m) {
   if (m.type === 'auth') {
-    me = m.username; ls.set('ms-token', m.token);
+    me = m.username; ls.set('ms-token', m.token); ls.set('ms-user', me);
     $('auth').hidden = true; $('app').hidden = false; $('meName').textContent = me; $('pw').value = '';
   } else if (m.type === 'auth-failed') { ls.del('ms-token'); showAuth(); }
   else if (m.type === 'error') { if (!$('auth').hidden) $('authErr').textContent = m.text; else toast(m.text); }
@@ -157,7 +162,7 @@ function on(m) {
   } else if (m.type === 'found') renderResults(m);
   else if (m.type === 'opened') openChat(m.chatId);
   else if (m.type === 'members') {
-    if (cur && cur.id === m.chatId) $('ps').textContent = (cur.kind === 'channel' ? 'کانال' : 'گروه') + ' • ' + m.members.length + ' عضو';
+    if (cur && cur.id === m.chatId) { cur.members = m.members; $('ps').textContent = (cur.kind === 'channel' ? 'کانال' : 'گروه') + ' • ' + m.members.length + ' عضو • لیست اعضا'; }
   }
 }
 
@@ -223,7 +228,7 @@ $('tLogin').onclick = () => setMode('login'); $('tReg').onclick = () => setMode(
 const doAuth = () => send({ type: mode, username: $('un').value, password: $('pw').value });
 $('authBtn').onclick = doAuth;
 $('pw').addEventListener('keydown', (e) => { if (e.key === 'Enter') doAuth(); });
-$('logout').onclick = () => { send({ type: 'logout' }); ls.del('ms-token'); me = ''; chats = []; cur = null; $('pane').classList.remove('pane'); $('app').classList.remove('pane'); showAuth(); };
+$('logout').onclick = () => { send({ type: 'logout' }); ls.del('ms-token'); ls.del('ms-user'); me = ''; chats = []; cur = null; $('pane').classList.remove('pane'); $('app').classList.remove('pane'); showAuth(); };
 $('newBtn').onclick = () => $('dlg').showModal();
 $('dCancel').onclick = () => $('dlg').close();
 $('dOk').onclick = () => { send({ type: 'create', kind: $('dKind').value, name: $('dName').value, isPublic: $('dPub').checked }); $('dName').value = ''; $('dlg').close(); };
@@ -232,6 +237,20 @@ $('back').onclick = () => { $('app').classList.remove('pane'); cur = null; $('ph
 $('sendBtn').onclick = sendMsg;
 $('txt').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
 let st; $('search').addEventListener('input', (e) => { clearTimeout(st); const v = e.target.value; if (v.trim().length < 2) { $('results').textContent = ''; return; } st = setTimeout(() => send({ type: 'find', q: v }), 300); });
+
+$('ps').onclick = () => {
+  if (!cur || !cur.members) return;
+  const box = $('memList'); box.textContent = '';
+  cur.members.forEach((u) => {
+    const d = document.createElement('div'); d.className = 'ln';
+    const s = document.createElement('span'), dot = document.createElement('i');
+    dot.className = 'dot' + (u.online ? ' on' : ''); s.append(dot, u.username);
+    const r = document.createElement('small'); r.textContent = u.role === 'owner' ? 'مالک' : u.role === 'admin' ? 'مدیر' : 'عضو';
+    d.append(s, r); box.append(d);
+  });
+  $('memDlg').showModal();
+};
+$('memX').onclick = () => $('memDlg').close();
 
 connect();
 </script>
